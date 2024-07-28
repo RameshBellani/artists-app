@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+.transaction-list {
+  font-family: 'Roboto', sans-serif;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-list .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.transaction-list h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #333;
+}
+
+.add-transaction-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.add-transaction-link:hover {
+  background-color: #0056b3;
+}
+
+.transaction-list table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.transaction-list th,
+.transaction-list td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.transaction-list th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.transaction-list td {
+  font-size: 14px;
+  color: #555;
+}
+
+.transaction-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.transaction-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+.transaction-list td:last-child {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .transaction-list table,
+  .transaction-list th,
+  .transaction-list td {
+    display: block;
+  }
+
+  .transaction-list th,
+  .transaction-list td {
+    padding: 10px;
+    text-align: right;
+  }
+
+  .transaction-list th {
+    background-color: transparent;
+    color: #333;
+  }
+
+  .transaction-list tr {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  .transaction-list td {
+    border: none;
+    padding: 10px 10px 10px 0;
+    text-align: left;
+  }
+
+  .transaction-list td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    width: 50%;
+    display: inline-block;
+    color: #333;
+  }
+}

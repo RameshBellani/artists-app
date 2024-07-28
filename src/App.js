@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
+import TransactionList from './components/TransactionList';
+import AddTransaction from './components/AddTransaction';
 import './App.css';
 
 function App() {
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/transactions');
+        setTransactions(response.data);
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
+  const addTransaction = async (newTransaction) => {
+    try {
+      const response = await axios.post('http://localhost:5000/transactions', newTransaction);
+      setTransactions([response.data, ...transactions]);
+    } catch (error) {
+      console.error('Error adding transaction:', error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<TransactionList transactions={transactions} />} />
+          <Route path="/add" element={<AddTransaction addTransaction={addTransaction} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
